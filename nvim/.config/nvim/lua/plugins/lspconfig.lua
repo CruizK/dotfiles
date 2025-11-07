@@ -34,7 +34,7 @@ return {
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       vim.g.zig_fmt_parse_errors = 0
       vim.g.zig_fmt_autosave = 0
-      require("lspconfig").zls.setup {
+      vim.lsp.config("zls", {
         capabilities = capabilities,
         settings = {
           zls = {
@@ -42,7 +42,7 @@ return {
             build_on_save_step = "check"
           }
         }
-      }
+      })
 
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
