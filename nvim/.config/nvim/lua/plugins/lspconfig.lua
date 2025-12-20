@@ -35,7 +35,7 @@ return {
       require("lspconfig").lua_ls.setup { capabilities = capabilities }
       vim.g.zig_fmt_parse_errors = 0
       vim.g.zig_fmt_autosave = 0
-      require("lspconfig").zls.setup {
+      vim.lsp.config("zls", {
         capabilities = capabilities,
         settings = {
           zls = {
@@ -43,7 +43,7 @@ return {
             build_on_save_step = "check"
           }
         }
-      }
+      })
 
       if vim.fn.has("win32") then
         require("config.plugins.lsp").omnisharp_setup(capabilities)

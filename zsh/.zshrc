@@ -31,6 +31,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.config/bin:$PATH
 export PATH=$HOME/zig14:$PATH
+export PATH=/opt/nvim-linux-x86_64/bin:$PATH
 
 # zoxide
 eval "$(zoxide init zsh)"
