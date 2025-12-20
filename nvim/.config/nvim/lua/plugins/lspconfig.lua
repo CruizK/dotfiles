@@ -4,6 +4,7 @@ return {
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
+      'Hoffs/omnisharp-extended-lsp.nvim',
       'saghen/blink.cmp',
       {
         "folke/lazydev.nvim",
@@ -28,10 +29,10 @@ return {
           "astro",
           "ts_ls",
           "cssls",
-          "qmlls"
         },
       }
       local capabilities = require('blink.cmp').get_lsp_capabilities()
+      require("lspconfig").lua_ls.setup { capabilities = capabilities }
       vim.g.zig_fmt_parse_errors = 0
       vim.g.zig_fmt_autosave = 0
       require("lspconfig").zls.setup {
@@ -43,6 +44,10 @@ return {
           }
         }
       }
+
+      if vim.fn.has("win32") then
+        require("config.plugins.lsp").omnisharp_setup(capabilities)
+      end
 
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
