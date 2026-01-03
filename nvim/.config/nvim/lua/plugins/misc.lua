@@ -18,10 +18,6 @@ return {
     -- this is equivalent to setup({}) function
   },
   {
-    "Badhi/nvim-treesitter-cpp-tools",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-  },
-  {
     'folke/tokyonight.nvim',
     priority = 1000,
     init = function()

@@ -23,11 +23,6 @@ return {
       require("mason-lspconfig").setup {
         ensure_installed = {
           "lua_ls",
-          "pyright",
-          "zls",
-          "astro",
-          "ts_ls",
-          "cssls",
         },
       }
       local capabilities = require('blink.cmp').get_lsp_capabilities()

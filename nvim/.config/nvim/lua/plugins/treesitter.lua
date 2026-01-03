@@ -1,6 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     build = ":TSUpdate",
     config = function()
       require 'nvim-treesitter.configs'.setup {
@@ -21,7 +22,6 @@ return {
           "astro",
           "javascript",
           "typescript",
-          "qmljs"
         },
         auto_install = false,
         indent = {
