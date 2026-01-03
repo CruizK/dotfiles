@@ -5,6 +5,11 @@ return {
     local ls = require("luasnip")
     vim.keymap.set({ "i", "s" }, "<C-K>", function() ls.expand_or_jump() end, { silent = true })
 
+    ls.config.set_config({
+      history = true,
+      updateevents = "TextChanged,TextChangedI",
+    })
+
     local path = vim.fn.stdpath("config") .. "/lua/snippets"
 
     vim.keymap.set("n", "<leader>ls", function()
