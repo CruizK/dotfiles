@@ -26,24 +26,27 @@ return {
     }
 
     require('telescope').setup {
-      defaults = {
-        file_ignore_patterns = ignore_patterns,
-        vimgrep_arguments = {
-          "rg",
-          "--follow",
-          "--hidden",
-          "--no-heading",
-          "--with-filename",
-          "--line-number",
-          "--column",
-          "--smart-case",
-          table.unpack(rg_globs),
-        },
-      },
+      defaults = vim.tbl_deep_extend(
+        "force",
+        require("telescope.themes").get_ivy(),
+        {
+          file_ignore_patterns = ignore_patterns,
+          vimgrep_arguments = {
+            "rg",
+            "--follow",
+            "--hidden",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            table.unpack(rg_globs),
+          }
+        }
+      ),
       pickers = {
         find_files = {
           hidden = true,
-          theme = "ivy",
           find_command = {
             "rg",
             "--files",
@@ -64,6 +67,7 @@ return {
         }
       }
     }
+
     require('telescope').load_extension('fzf')
     require('telescope').load_extension("ui-select")
     local builtin = require("telescope.builtin")

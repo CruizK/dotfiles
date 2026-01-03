@@ -4,7 +4,7 @@ local M = {}
 M.omnisharp_setup = function(capabilities)
   local omnisharp_bin = "C:\\omnisharp\\OmniSharp.exe"
   local pid = vim.fn.getpid()
-  require("lspconfig").omnisharp.setup {
+  vim.lsp.config("omnisharp", {
     cmd = {
       omnisharp_bin,
       "--languageserver",
@@ -24,7 +24,7 @@ M.omnisharp_setup = function(capabilities)
         EnableAnalyzersSupport = true
       }
     }
-  }
+  })
 end
 
 --- @param args vim.api.keyset.create_autocmd.callback_args
@@ -34,6 +34,7 @@ M.on_attach = function(args)
   local map = function(keys, func, desc)
     vim.keymap.set('n', keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
   end
+
 
   if client.name == "omnisharp" then
     local omni_ext = require("omnisharp_extended")
