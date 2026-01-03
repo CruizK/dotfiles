@@ -19,12 +19,7 @@ return {
       },
     },
     config = function()
-      require("mason").setup({
-        registries = {
-          "github:mason-org/mason-registry",
-          "github:crashdummyy/mason-registry",
-        }
-      })
+      require("mason").setup()
       require("mason-lspconfig").setup {
         ensure_installed = {
           "lua_ls",
