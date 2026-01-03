@@ -6,6 +6,7 @@ set('i', '<Right>', '<Nop>')
 set('i', '<Up>', '<Nop>')
 set('i', '<Down>', '<Nop>')
 
+set('n', '<leader>x', '<cmd>source %<CR>', { desc = 'Execute the current file' })
 
 set('n', '<M-j>', '<cmd>cnext<CR>')
 set('n', '<M-k>', '<cmd>cprev<CR>')
