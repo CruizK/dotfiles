@@ -1,6 +1,6 @@
 return {
   'saghen/blink.cmp',
-  dependencies = 'rafamadriz/friendly-snippets',
+  dependencies = { 'L3MON4D3/LuaSnip', version = '2.*' },
   version = '*',
   build = 'cargo build --release',
 
@@ -11,7 +11,8 @@ return {
     -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
     -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
     -- See the full "keymap" documentation for information on defining your own keymap.
-    keymap = { preset = 'super-tab' },
+    keymap = { preset = 'super-tab', ['<C-k>'] = { 'fallback' } },
+    snippets = { preset = 'luasnip' },
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp's highlight groups
       -- Useful for when your theme doesn't support blink.cmp

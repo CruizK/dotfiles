@@ -28,4 +28,8 @@ return {
       vim.cmd.colorscheme 'tokyonight-night'
     end
   },
+  {
+    "davidmh/mdx.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" }
+  }
 }

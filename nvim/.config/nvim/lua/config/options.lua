@@ -4,6 +4,7 @@ if require('config.os').iswin32 then
   vim.opt.shellxquote = ''
 end
 
+vim.opt.spelllang = 'en_us'
 vim.opt.number = true
 vim.opt.relativenumber = true
 
