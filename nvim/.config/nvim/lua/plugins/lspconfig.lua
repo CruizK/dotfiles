@@ -19,7 +19,12 @@ return {
       },
     },
     config = function()
-      require("mason").setup()
+      require("mason").setup({
+        registries = {
+          "github:mason-org/mason-registry",
+          "github:crashdummyy/mason-registry",
+        }
+      })
       require("mason-lspconfig").setup {
         ensure_installed = {
           "lua_ls",
@@ -39,7 +44,7 @@ return {
       })
 
       if vim.fn.has("win32") then
-        require("config.plugins.lsp").omnisharp_setup(capabilities)
+        --require("config.plugins.lsp").omnisharp_setup(capabilities)
       end
 
       vim.api.nvim_create_autocmd("LspAttach", {
