@@ -1,5 +1,32 @@
 local M = {}
 
+--- @param capabilities lsp.ClientCapabilities
+M.omnisharp_setup = function(capabilities)
+  local omnisharp_bin = "C:\\omnisharp\\OmniSharp.exe"
+  local pid = vim.fn.getpid()
+  require("lspconfig").omnisharp.setup {
+    cmd = {
+      omnisharp_bin,
+      "--languageserver",
+      "--hostPID",
+      tostring(pid)
+    },
+    capabilities = capabilities,
+    settings = {
+      FormattingOptions = {
+        EnableEditorConfigSupport = true,
+        OrganizeImports = true
+      },
+      Sdk = {
+        IncludePrereleases = true
+      },
+      RoslynExtensionsOptions = {
+        EnableAnalyzersSupport = true
+      }
+    }
+  }
+end
+
 --- @param args vim.api.keyset.create_autocmd.callback_args
 M.on_attach = function(args)
   local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -8,9 +35,16 @@ M.on_attach = function(args)
     vim.keymap.set('n', keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
   end
 
-  map('gd', vim.lsp.buf.definition, "[G]oto [D]efinition")
-  map('gr', vim.lsp.buf.references, "[G]oto [R]references")
-  map('gi', vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+  if client.name == "omnisharp" then
+    local omni_ext = require("omnisharp_extended")
+    map('gd', omni_ext.lsp_definition, "[G]oto [D]efinition")
+    map('gr', omni_ext.lsp_references, "[G]oto [R]references")
+    map('gi', omni_ext.lsp_implementation, "[G]oto [I]mplementation")
+  else
+    map('gd', vim.lsp.buf.definition, "[G]oto [D]efinition")
+    map('gr', vim.lsp.buf.references, "[G]oto [R]references")
+    map('gi', vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+  end
   map('vrn', vim.lsp.buf.rename, "[v] [R]e [N]ame")
   map('vca', vim.lsp.buf.code_action, "[v] [C]ode [A]ction")
   map('<leader>sd', vim.diagnostic.open_float, "[Show] [Diagnostics]")
