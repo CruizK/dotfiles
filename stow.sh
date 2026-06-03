@@ -17,7 +17,7 @@ mkdir -p ~/.config/tmux
 for dir in *; do
     if [ -d "$dir" ]; then
         echo "Stowing $dir"
-        stow "$dir" -t ~
+        stow --adopt "$dir" -t ~
     fi
 done
 

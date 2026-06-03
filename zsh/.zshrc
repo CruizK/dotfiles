@@ -7,7 +7,9 @@ plugins=(git fzf zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # cargo
-source $HOME/.cargo/env
+if [[ -r "$HOME/.cargo" ]]; then
+  source $HOME/.cargo/env
+fi
 
 
 # Prompts:w
@@ -26,7 +28,7 @@ fi
 
 # Exports
 export EDITOR='nvim'
-export SNOWFLAKE_PRIVATE_KEY="$(cat ~/dev/rsa_key.p8)"
+# export SNOWFLAKE_PRIVATE_KEY="$(cat ~/dev/rsa_key.p8)"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.config/bin:$PATH
