@@ -2,46 +2,51 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
+    lazy = false,
     build = ":TSUpdate",
     config = function()
-      require 'nvim-treesitter'.setup {
+      require('nvim-treesitter').setup {
         -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-        ensure_installed = {
-          "cpp",
-          "python",
-          "bash",
-          "dockerfile",
-          "lua",
-          "vim",
-          "vimdoc",
-          "query",
-          "markdown",
-          "markdown_inline",
-          "zig",
-          "c_sharp",
-          "astro",
-          "javascript",
-          "typescript",
-        },
-        auto_install = false,
-        indent = {
-          enable = true,
-          disable = { "python" }
-        },
-        highlight = {
-          enable = true,
-          -- Disable for lage files
-          disable = function(lang, buf)
-            local max_filesize = 100 * 1024 -- 100 KB
-            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-            if ok and stats and stats.size > max_filesize then
-              return true
-            end
-          end,
-
-          additional_vim_regex_highlighting = false,
-        },
+        install_dir = vim.fn.stdpath('data') .. '/site'
       }
+      require("nvim-treesitter").install({
+        "cpp",
+        "python",
+        "bash",
+        "dockerfile",
+        "lua",
+        "vim",
+        "vimdoc",
+        "query",
+        "markdown",
+        "markdown_inline",
+        "zig",
+        "c_sharp",
+        "astro",
+        "javascript",
+        "typescript",
+      })
+      -- ensure_installed = {
+      -- },
+      -- auto_install = false,
+      -- indent = {
+      --   enable = true,
+      --   disable = { "python" }
+      -- },
+      -- highlight = {
+      --   enable = true,
+      --   -- Disable for lage files
+      --   disable = function(lang, buf)
+      --     local max_filesize = 100 * 1024 -- 100 KB
+      --     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+      --     if ok and stats and stats.size > max_filesize then
+      --       return true
+      --     end
+      --   end,
+      --
+      --   additional_vim_regex_highlighting = false,
+      -- },
+      --
     end
   }
 }

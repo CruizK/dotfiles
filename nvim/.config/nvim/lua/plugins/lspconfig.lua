@@ -26,6 +26,7 @@ return {
         },
       }
       local capabilities = require('blink.cmp').get_lsp_capabilities()
+      vim.lsp.enable("lua_ls")
       vim.g.zig_fmt_parse_errors = 0
       vim.g.zig_fmt_autosave = 0
       vim.lsp.config("zls", {
@@ -37,10 +38,6 @@ return {
           }
         }
       })
-
-      if vim.fn.has("win32") then
-        --require("config.plugins.lsp").omnisharp_setup(capabilities)
-      end
 
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
