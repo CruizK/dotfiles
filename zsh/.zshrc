@@ -6,9 +6,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git fzf zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
-# cargo
-source $HOME/.cargo/env
-
 
 # Prompts:w
 # eval "$(starship init zsh)"
@@ -29,10 +26,12 @@ export EDITOR='nvim'
 export SNOWFLAKE_PRIVATE_KEY="$(cat ~/dev/rsa_key.p8)"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.config/bin:$PATH
 export PATH=$HOME/zig14:$PATH
 export PATH=/opt/nvim-linux-x86_64/bin:$PATH
-
+export PATH="$HOME/.devcontainers/bin:$PATH"
+export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 # zoxide
 eval "$(zoxide init zsh)"
 
@@ -46,7 +45,7 @@ function editdir() {
 # Aliases
 alias zs="source ~/.zshrc"
 alias python="python3"
-alias ls="eza -l -g --icons --git"
+alias ls="eza -l -g --icons"
 alias lst="eza -1 --icons --tree --git-ignore"
 alias vi="nvim"
 alias vim="nvim"
@@ -66,3 +65,13 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/cruiz.kusman/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+# fnm
+FNM_PATH="/opt/homebrew/opt/fnm/bin"
+if [ -d "$FNM_PATH" ]; then
+  eval "$(fnm env --shell zsh)"
+fi
