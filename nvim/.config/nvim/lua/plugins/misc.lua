@@ -33,21 +33,8 @@ return {
     keys = {
       {
         "<leader>gl",
-        function()
-          local s, r = pcall(function()
-            require("git-link.main").copy_permalink()
-          end)
-          if not s then
-            require("git-link.main").copy_line_url()
-          end
-        end,
+        function() require("git-link.main").copy_line_url() end,
         desc = "Copy code link to clipboard",
-        mode = { "n", "x" }
-      },
-      {
-        "<leader>gp",
-        function() require("git-link.main").copy_permalink() end,
-        desc = "Copy code permalink to clipboard",
         mode = { "n", "x" }
       }
     }
