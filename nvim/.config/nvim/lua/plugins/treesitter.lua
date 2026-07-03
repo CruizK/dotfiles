@@ -25,11 +25,11 @@ return {
         "astro",
         "javascript",
         "typescript",
-
+        "toml"
       })
 
       vim.api.nvim_create_autocmd('FileType', {
-        pattern = { 'lua', 'python', 'javascript', 'typescript', 'markdown' },
+        pattern = { 'lua', 'python', 'javascript', 'typescript', 'markdown', 'toml', 'bash' },
         callback = function()
           vim.treesitter.start()
         end
