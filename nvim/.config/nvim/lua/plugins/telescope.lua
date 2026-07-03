@@ -30,6 +30,7 @@ return {
         "force",
         require("telescope.themes").get_ivy(),
         {
+          path_display = { shorten = 3 },
           file_ignore_patterns = ignore_patterns,
           vimgrep_arguments = {
             "rg",
@@ -46,12 +47,13 @@ return {
       ),
       pickers = {
         find_files = {
-          hidden = true,
           find_command = {
-            "rg",
-            "--files",
+            "fd",
+            "--type", "f",
+            "--strip-cwd-prefix",
             "--hidden",
-            table.unpack(rg_globs)
+            "--follow",
+            "--exclude", ".git"
           }
         }
       },
@@ -73,6 +75,7 @@ return {
     local builtin = require("telescope.builtin")
 
     vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
+    vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "[F]ind [O]ldfiles" })
     vim.keymap.set("n", "<leader>ff", function()
       builtin.find_files { path_display = { "truncate" } }
     end, { desc = "[F]ind [F]iles" })

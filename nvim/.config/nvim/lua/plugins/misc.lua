@@ -27,5 +27,22 @@ return {
   {
     "davidmh/mdx.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" }
+  },
+  {
+    "juacker/git-link.nvim",
+    keys = {
+      {
+        "<leader>gl",
+        function() require("git-link.main").copy_line_url() end,
+        desc = "Copy code link to clipboard",
+        mode = { "n", "x" }
+      },
+      {
+        "<leader>gp",
+        function() require("git-link.main").copy_permalink() end,
+        desc = "Copy code permalink to clipboard",
+        mode = { "n", "x" }
+      }
+    }
   }
 }
