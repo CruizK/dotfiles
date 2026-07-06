@@ -59,3 +59,7 @@ bindkey -s ^f "tmux-sessionizer\n"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/cruiz.kusman/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
