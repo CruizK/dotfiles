@@ -37,6 +37,14 @@ on-window-detected = [
         if = "test %{app-name} ~= 1Password",
         run = "layout floating"
     },
+    {
+        if = "test %{app-bundle-id} = com.tinyapp.TablePlus",
+        run = "layout floating"
+    },
+    {
+        if = "test %{app-bundle-id} = io.rancherdesktop.app",
+        run = "layout floating"
+    },
 ]
 
 # Start AeroSpace at login
