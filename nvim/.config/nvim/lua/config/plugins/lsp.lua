@@ -2,29 +2,7 @@ local M = {}
 
 --- @param capabilities lsp.ClientCapabilities
 M.omnisharp_setup = function(capabilities)
-  local omnisharp_bin = "C:\\omnisharp\\OmniSharp.exe"
-  local pid = vim.fn.getpid()
-  vim.lsp.config("omnisharp", {
-    cmd = {
-      omnisharp_bin,
-      "--languageserver",
-      "--hostPID",
-      tostring(pid)
-    },
-    capabilities = capabilities,
-    settings = {
-      FormattingOptions = {
-        EnableEditorConfigSupport = true,
-        OrganizeImports = true
-      },
-      Sdk = {
-        IncludePrereleases = true
-      },
-      RoslynExtensionsOptions = {
-        EnableAnalyzersSupport = true
-      }
-    }
-  })
+  vim.lsp.enable("omnisharp")
 end
 
 --- @param args vim.api.keyset.create_autocmd.callback_args
@@ -61,16 +39,6 @@ M.on_attach = function(args)
     vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
       buffer = args.buf,
       callback = vim.lsp.buf.clear_references
-    })
-  end
-
-  -- Setup auto format on save
-  if client:supports_method('textDocument/formatting', nil) then
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      buffer = args.buf,
-      callback = function()
-        vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-      end
     })
   end
 end

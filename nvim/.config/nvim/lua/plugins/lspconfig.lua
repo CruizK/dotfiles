@@ -2,6 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
+      'stevearc/conform.nvim',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'Hoffs/omnisharp-extended-lsp.nvim',
@@ -37,6 +38,17 @@ return {
           }
         }
       })
+
+      vim.lsp.enable("roslyn_ls")
+
+      require("conform").setup({
+        formatters_by_ft = {
+          cs = { "csharpier" }
+        },
+      })
+
+      vim.keymap.set("n", "<leader>cf", function() require("conform").format { async = true } end,
+        { desc = "Format file" })
 
       if vim.fn.has("win32") then
         --require("config.plugins.lsp").omnisharp_setup(capabilities)

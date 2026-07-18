@@ -8,7 +8,9 @@ return {
   },
   config = function()
     -- We can put paths to ignore here
-    local ignore_patterns = { 'deps/' }
+    local ignore_patterns = {
+      'deps/',
+    }
     if require('config.os').iswin32 then
       for i, pattern in pairs(ignore_patterns) do
         ignore_patterns[i] = pattern:gsub("/", "\\")
@@ -23,6 +25,7 @@ return {
       "--glob=!**/dist/*",
       "--glob=!**/.oh-my-zsh/*",
       "--glob=!**/.tmux/*",
+      "--glob=!*.{asset,meta,unity,xsd,uxml,dll,xml,inputactions,ttf,data,png,bytes}",
     }
 
     require('telescope').setup {
